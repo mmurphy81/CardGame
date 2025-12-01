@@ -8,8 +8,11 @@ public class Player {
     public Player(String name){
        this.name = name;
        points=0;
+       this.hand = new ArrayList<Card>();
     }
     public Player(String name, ArrayList<Card> hand){
+        this.name = name;
+        this.hand = hand;
         points=0;
     }
 
