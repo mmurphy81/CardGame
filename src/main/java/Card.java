@@ -33,6 +33,12 @@ public class Card {
         this.value = value;
     }
 
+    public boolean faceCard(){
+        if(rank.equals("Jack")|| rank.equals("Queen")||rank.equals("King")|| rank.equals("Ace")){
+            return true;
+        }
+    }
+
     public String toString(){
         return rank + " of " + suit;
     }
