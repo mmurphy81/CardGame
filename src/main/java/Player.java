@@ -35,6 +35,12 @@ public class Player {
         hand.add(newCard);
     }
 
+    public Card placeCard(){
+        Card recent = hand.getFirst();
+        hand.removeFirst();
+        return recent;
+    }
+
     public String toString(){
         return name + " has " + points + " points" +"/n" + name + "'s cards:" + hand;
     }
