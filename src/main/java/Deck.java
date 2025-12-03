@@ -31,7 +31,7 @@ public class Deck {
             return null;
         }
 
-        Card dealtCard = cards.get(cardsLeft);
+        Card dealtCard = cards.get(cardsLeft-1);
         cardsLeft--;
         return dealtCard;
     }
