@@ -34,9 +34,10 @@ public class Card {
     }
 
     public boolean faceCard(){
-        if(rank.equals("Jack")|| rank.equals("Queen")||rank.equals("King")|| rank.equals("Ace")){
+        if(rank.equals("Jack")|| rank.equals("Queen")||rank.equals("King")|| rank.equals("A")){
             return true;
         }
+        return false;
     }
 
     public String toString(){
