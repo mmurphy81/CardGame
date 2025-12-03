@@ -46,7 +46,7 @@ public class Deck {
 
     //Shuffles the deck
     public void shuffle(){
-        //Loops through all of the cards and changes the values within them
+        //Loops through all of the cards and changes the values within the
         for (int i = cardsLeft - 1; i>=0; i--){
             int r = (int)(Math.random()*(i));
             Card temp = cards.get(i);
