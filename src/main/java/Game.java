@@ -1,20 +1,33 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     //Initializes the instance variables for the game
     private Player player1;
     private Player player2;
     private Deck deck;
+    private GameViewer window;
 
     //Game constructor
     public Game() {
+        //Creates the instance variable of the window
+        this.window = new GameViewer(this);
+        window.repaint();
+
         //Sets player1 and player2 names as according
-        this.player1 = new Player("Player1");
-        this.player2 = new Player("Player2");
+        Scanner s = new Scanner(System.in);
+        System.out.println("What is player 1 name?");
+        String name1 = s.nextLine();
+
+        System.out.println("What is player 2 name?");
+        String name2 = s.nextLine();
+
+        this.player1 = new Player(name1);
+        this.player2 = new Player(name2);
 
         //Sets the card instance variables for the deck
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "Jack", "Queen", "King"};
-        String[] suits = {"Hearts", "Clubs", "Spades", "Diamonds"};
+        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
         int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
         //Creates the deck
@@ -40,7 +53,7 @@ public class Game {
             if (hasWon()==null){
                //Player adds a card to the pile
                 Card player1Card = player1.placeCard();
-                System.out.println("Player 1 placed: " + player1Card + " ");
+                System.out.println( player1.getName() + " placed: " + player1Card + " ");
                 pile.add(player1Card);
 
                 //Checks to make sure the card is a face card, and if it is, the pile resets and the
@@ -50,12 +63,12 @@ public class Game {
                         player1.addCard(pile.get(i));
                         pile.remove(i);
                     }
-                    System.out.println("Player 1 has won this pile.");
-                    System.out.println("Player1 hand size: "+  player1.getHand().size() + " Player 2 hand size: "+  player2.getHand().size());
+                    System.out.println(player1.getName() + " has won this pile.");
+                    System.out.println(player1.getName() +" hand size: "+  player1.getHand().size() + " Player 2 hand size: "+  player2.getHand().size());
                 }
 
                 Card player2Card = player2.placeCard();
-                System.out.println("Player 2 placed: " + player2Card + " ");
+                System.out.println(player2.getName() +" placed: " + player2Card + " ");
                 pile.add(player2Card);
                 if (player2Card.faceCard()==true){
                     for (int i =0; i<pile.size(); i++){
@@ -63,18 +76,18 @@ public class Game {
                         pile.remove(i);
                     }
 
-                    System.out.println("Player 2 has won this pile.");
-                    System.out.println("Player1 hand size: "+  player1.getHand().size() + " Player 2 hand size: "+  player2.getHand().size());
+                    System.out.println(player2.getName() + " has won this pile.");
+                    System.out.println(player1.getName() +" hand size: "+  player1.getHand().size() +  player2.getName() + " hand size: "+  player2.getHand().size());
                 }
             }
 
             //If one of the players has won, the game ends and whichever player won is crowned as so
             else if (hasWon().equals(player1)){
-                System.out.println("Player 1 has won!");
+                System.out.println(player1.getName() +" has won!");
                 break;
             }
             else if (hasWon().equals(player2)){
-                System.out.println("Player 2 has won!");
+                System.out.println(player2.getName() +" has won!");
                 break;
             }
 
