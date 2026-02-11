@@ -1,9 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class GameViewer extends JFrame {
     //Instance variables
-    private final int WINDOW_WIDTH = 500;
-    private final int WINDOW_HEIGHT = 500;
+    private final int WINDOW_WIDTH = 1000;
+    private final int WINDOW_HEIGHT = 1000;
     private Game backend;
 
     public GameViewer(Game backend){
@@ -16,4 +17,13 @@ public class GameViewer extends JFrame {
         this.setVisible(true);
     }
 
+    public void paint(Graphics g) {
+        g.setColor(Color.red);
+        g.setFont(new Font("Serif", Font.PLAIN, 30));
+
+        Card c = backend.getPlayer1().getHand().get(0);
+        c.drawCard(g);
+        System.out.println(c);
+        }
 }
+

@@ -1,14 +1,21 @@
+import java.awt.*;
+import java.awt.image.ImageObserver;
+
 public class Card {
     //Initializes instance variables for the card
     private String rank;
     private String suit;
     private int value;
+    private Image image;
+    private GameViewer window;
 
     //The constructor for the card
-    public Card(String rank, String suit, int value) {
+    public Card(String rank, String suit, int value, Image image, GameViewer window) {
         this.rank = rank;
         this.suit = suit;
         this.value = value;
+        this.image = image;
+        this.window = window;
     }
 
     //Getter for rank
@@ -24,6 +31,10 @@ public class Card {
     //Getter for value
     public int getValue() {
         return value;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     //Setter for rank
@@ -52,5 +63,9 @@ public class Card {
     //toString for the card
     public String toString(){
         return rank + " of " + suit;
+    }
+
+    public void drawCard(Graphics g){
+            g.drawImage(this.getImage(), 400, 50, 150, 200, window);
     }
 }

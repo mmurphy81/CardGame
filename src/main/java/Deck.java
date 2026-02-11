@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Deck {
@@ -6,12 +8,14 @@ public class Deck {
     private int cardsLeft;
 
     //Constructor for the deck
-    public Deck(String[] rank, String[] suit, int[] values) {
+    public Deck(String[] rank, String[] suit, int[] values, GameViewer window) {
         cards = new ArrayList<Card>();
+        int count = 0;
         for (int i=0; i<rank.length; i++){
             for (int j = 0; j<suit.length; j++){
+                count++;
                 //Initializes the cards themselves with their instance variables and adds them to the deck
-                Card x = new Card(rank[i], suit[j], values[i]);
+                Card x = new Card(rank[i], suit[j], values[i], new ImageIcon("src/main/resources/"+count +".png").getImage(), window);
                 cards.add(x);
             }
         }
@@ -54,4 +58,6 @@ public class Deck {
             cards.set(r, temp);
         }
     }
+
+
 }

@@ -12,7 +12,6 @@ public class Game {
     public Game() {
         //Creates the instance variable of the window
         this.window = new GameViewer(this);
-        window.repaint();
 
         //Sets player1 and player2 names as according
         Scanner s = new Scanner(System.in);
@@ -31,7 +30,7 @@ public class Game {
         int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
         //Creates the deck
-        this.deck = new Deck(ranks, suits, values);
+        this.deck = new Deck(ranks, suits, values, window);
 
         //Distributes the deck while the deck has cards within it to the players hand
         while (!deck.isEmpty()) {
@@ -42,6 +41,20 @@ public class Game {
             Card player2Cards = deck.deal();
             player2.addCard(player2Cards);
         }
+
+        window.repaint();
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
     }
 
     public void playGame(){
