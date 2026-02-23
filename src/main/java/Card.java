@@ -65,7 +65,7 @@ public class Card {
         return rank + " of " + suit;
     }
 
-    public void drawCard(Graphics g){
-            g.drawImage(this.getImage(), 400, 50, 150, 200, window);
+    public void drawCard(Graphics g, int x, int y){
+            g.drawImage(this.getImage(), x, y, 150, 200, window);
     }
 }

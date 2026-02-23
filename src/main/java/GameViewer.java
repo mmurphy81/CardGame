@@ -19,23 +19,33 @@ public class GameViewer extends JFrame {
     }
 
     public void paint(Graphics g) {
+        g.setColor(new Color(31, 131, 41));
+        g.fillRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
         ArrayList<Card> hand1 = new ArrayList<>();
-        hand1 = Game.player1.getHand();
+        hand1 = backend.getPlayer1().getHand();
 
         ArrayList<Card> hand2 = new ArrayList<>();
-        hand2 = Game.player2.getHand();
+        hand2 = backend.getPlayer2().getHand();
 
         g.setColor(Color.red);
         g.setFont(new Font("Serif", Font.PLAIN, 30));
 
-        for (int i =0; i<hand1.size(); i++){
-            Card c = hand1.get(0);
-            c.drawCard(g);
+        if (!hand1.isEmpty()) {
+            Card top1 = hand1.get(0);
+            top1.drawCard(g, 400, 50);
+
         }
 
-        for (int i =0; i<hand2.size(); i++){
-            Card c = hand1.get(0);
-            c.drawCard(g);
+        if (!hand2.isEmpty()) {
+            Card top2 = hand2.get(0);
+            top2.drawCard(g, 400, 550);
+
+        }
+
+        if (!backend.getPile().isEmpty()){
+            Card topP = backend.getPile().get(0);
+            topP.drawCard(g, 400, 300);
         }
 
 

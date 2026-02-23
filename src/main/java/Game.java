@@ -7,6 +7,7 @@ public class Game {
     private Player player2;
     private Deck deck;
     private GameViewer window;
+    private ArrayList<Card> pile;
 
     //Game constructor
     public Game() {
@@ -25,9 +26,11 @@ public class Game {
         this.player2 = new Player(name2);
 
         //Sets the card instance variables for the deck
-        String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "Jack", "Queen", "King"};
+        String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
         int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+        pile = new ArrayList<>();
 
         //Creates the deck
         this.deck = new Deck(ranks, suits, values, window);
@@ -57,36 +60,47 @@ public class Game {
         return player2;
     }
 
+    public ArrayList<Card> getPile() {
+        return pile;
+    }
+
     public void playGame(){
         //Initializing the pile factor of this game which the players will be able to place cards into
-        ArrayList<Card> pile = new ArrayList<>();
+        Scanner s = new Scanner(System.in);
         //Prints out the hand size of each player to keep track and makes sure a player has not
         // won the game before continuing
         while (player1.getHand().size() > 0 && player2.getHand().size() > 0) {
             if (hasWon()==null){
                //Player adds a card to the pile
                 Card player1Card = player1.placeCard();
+                s.nextLine();
                 System.out.println( player1.getName() + " placed: " + player1Card + " ");
-                pile.add(player1Card);
+                pile.add(0, player1Card);
+                window.repaint();
 
                 //Checks to make sure the card is a face card, and if it is, the pile resets and the
                 // Player gets the cards in the pile
                 if (player1Card.faceCard()==true){
-                    for (int i =0; i<pile.size(); i++){
-                        player1.addCard(pile.get(i));
-                        pile.remove(i);
+                    s.nextLine();
+                    while (!pile.isEmpty()){
+                        player1.addCard(pile.remove(0));
+
                     }
                     System.out.println(player1.getName() + " has won this pile.");
-                    System.out.println(player1.getName() +" hand size: "+  player1.getHand().size() + " Player 2 hand size: "+  player2.getHand().size());
+                    System.out.println(player1.getName() +" hand size: "+  player1.getHand().size() + " " + player2.getName() +" hand size: " + player2.getHand().size());
                 }
+                window.repaint();
 
                 Card player2Card = player2.placeCard();
+                s.nextLine();
                 System.out.println(player2.getName() +" placed: " + player2Card + " ");
-                pile.add(player2Card);
+                pile.add(0,player2Card);
+                window.repaint();
+
                 if (player2Card.faceCard()==true){
-                    for (int i =0; i<pile.size(); i++){
-                        player2.addCard(pile.get(i));
-                        pile.remove(i);
+                    s.nextLine();
+                    while (!pile.isEmpty()){
+                        player2.addCard(pile.remove(0));
                     }
 
                     System.out.println(player2.getName() + " has won this pile.");
@@ -105,6 +119,7 @@ public class Game {
             }
 
         }
+        window.repaint();
     }
 
     //Checks to see which player won the game, returns null if nobody has
