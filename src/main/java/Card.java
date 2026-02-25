@@ -65,6 +65,7 @@ public class Card {
         return rank + " of " + suit;
     }
 
+    //Draws the card with a certain width and heigh in the game Viewer class
     public void drawCard(Graphics g, int x, int y){
             g.drawImage(this.getImage(), x, y, 150, 200, window);
     }
