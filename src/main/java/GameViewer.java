@@ -19,38 +19,53 @@ public class GameViewer extends JFrame {
     }
 
     public void paint(Graphics g) {
+        // Initializes the window background
         g.setColor(new Color(31, 131, 41));
         g.fillRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        ArrayList<Card> hand1 = new ArrayList<>();
-        hand1 = backend.getPlayer1().getHand();
-
-        ArrayList<Card> hand2 = new ArrayList<>();
-        hand2 = backend.getPlayer2().getHand();
-
+        //Initializes the color and font for the text
         g.setColor(Color.red);
         g.setFont(new Font("Serif", Font.PLAIN, 30));
 
-        if (!hand1.isEmpty()) {
-            Card top1 = hand1.get(0);
-            top1.drawCard(g, 400, 50);
 
+        if (backend.getPlayer1() == null){
+            String[] instructions = backend.INSTRUCTIONS.split("\n");
+
+            for (int i =0; i<instructions.length; i++){
+                g.drawString(instructions[i], 100, 200+(i*30));
+            }
         }
+        else {
+            ArrayList<Card> hand1 = new ArrayList<>();
+            hand1 = backend.getPlayer1().getHand();
 
-        if (!hand2.isEmpty()) {
-            Card top2 = hand2.get(0);
-            top2.drawCard(g, 400, 550);
+            ArrayList<Card> hand2 = new ArrayList<>();
+            hand2 = backend.getPlayer2().getHand();
 
+            Image back = new ImageIcon("src/main/resources/back.png").getImage();
+
+
+            if ( hand1.size() == 1){
+                g.drawString(backend.getPlayer2().getName() + " has won!", 700, 500);
+            }
+            else if ( hand2.size() == 1){
+                g.drawString(backend.getPlayer1().getName() + " has won!",700, 500);
+            }
+            else {
+                g.drawImage(back, 400, 50, 150, 200, this);
+                g.drawImage(back, 400, 600, 150, 200, this);
+            }
+
+
+            if (!backend.getPile().isEmpty()){
+                Card topP = backend.getPile().get(0);
+                topP.drawCard(g, 400, 300);
+
+            }
+
+            g.drawString(backend.getPlayer1().getName() + "'s Cards", 100, 200);
+            g.drawString(backend.getPlayer2().getName() + "'s Cards", 100, 700);
         }
-
-        if (!backend.getPile().isEmpty()){
-            Card topP = backend.getPile().get(0);
-            topP.drawCard(g, 400, 300);
-        }
-
-
-        g.drawString(backend.getPlayer1().getName() + "'s Cards", 100, 200);
-        g.drawString(backend.getPlayer2().getName() + "'s Cards", 100, 700);
         }
 }
 

@@ -9,6 +9,11 @@ public class Game {
     private GameViewer window;
     private ArrayList<Card> pile;
 
+    public static final String INSTRUCTIONS = "Welcome to the beginning level of Egyptian rat slap!\n" + "Here are some rules: \n" +
+            "The goal of the game is to end up with the most cards.\n" +
+            "Each player places cards into a pile, and if the card they placed is a face\n" +
+            "card they will win said pile and add it to their hand. \n Once one player has no cards, they have lost the game.";
+
     //Game constructor
     public Game() {
         //Creates the instance variable of the window
@@ -28,7 +33,7 @@ public class Game {
         //Sets the card instance variables for the deck
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-        int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 
         pile = new ArrayList<>();
 
@@ -36,7 +41,16 @@ public class Game {
         this.deck = new Deck(ranks, suits, values, window);
 
         //Distributes the deck while the deck has cards within it to the players hand
-        while (!deck.isEmpty()) {
+        /*while (!deck.isEmpty()) {
+            deck.shuffle();
+            Card player1Cards = deck.deal();
+            player1.addCard(player1Cards);
+
+            Card player2Cards = deck.deal();
+            player2.addCard(player2Cards);
+        }*/
+
+        for (int i = 0; i<4; i++){
             deck.shuffle();
             Card player1Cards = deck.deal();
             player1.addCard(player1Cards);
@@ -136,10 +150,7 @@ public class Game {
 
     //Prints out the instructions for the game
     public static void printInstructions(){
-        System.out.println("Welcome to the beginning level of Egyptian rat slap!\n" + "Here are some rules: \n" +
-                "The goal of the game is to end up with the most cards." +
-                "Each player places cards into a pile, and if the card they placed is a face " +
-                "card they will win said pile and add it to their hand. Once one player gets to 1 card, they have lost the game.");
+        System.out.println(INSTRUCTIONS);
     }
 
 
