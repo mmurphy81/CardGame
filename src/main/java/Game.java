@@ -50,6 +50,8 @@ public class Game {
             player2.addCard(player2Cards);
         }*/
 
+
+        // Simplified deck for a shorter game play
         for (int i = 0; i<4; i++){
             deck.shuffle();
             Card player1Cards = deck.deal();

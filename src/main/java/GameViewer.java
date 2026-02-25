@@ -23,11 +23,12 @@ public class GameViewer extends JFrame {
         g.setColor(new Color(31, 131, 41));
         g.fillRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        //Initializes the color and font for the text
+        // Initializes the color and font for the text
         g.setColor(Color.red);
         g.setFont(new Font("Serif", Font.PLAIN, 30));
 
 
+        // If the player has not been initialized, the instruction screen will display
         if (backend.getPlayer1() == null){
             String[] instructions = backend.INSTRUCTIONS.split("\n");
 
@@ -35,6 +36,7 @@ public class GameViewer extends JFrame {
                 g.drawString(instructions[i], 100, 200+(i*30));
             }
         }
+        // If the player HAS been initialized, it gets their hand and displays each deck face down
         else {
             ArrayList<Card> hand1 = new ArrayList<>();
             hand1 = backend.getPlayer1().getHand();
@@ -45,24 +47,28 @@ public class GameViewer extends JFrame {
             Image back = new ImageIcon("src/main/resources/back.png").getImage();
 
 
-            if ( hand1.size() == 1){
+            // If the players hand deck is 1 or empty, then that player loses and it displays the winners name
+            if ( hand1.size() == 1 || hand1.isEmpty()){
                 g.drawString(backend.getPlayer2().getName() + " has won!", 700, 500);
             }
-            else if ( hand2.size() == 1){
+            else if ( hand2.size() == 1 || hand2.isEmpty()){
                 g.drawString(backend.getPlayer1().getName() + " has won!",700, 500);
             }
+            //Otherwise, display both of the decks while the game is still in play
             else {
                 g.drawImage(back, 400, 50, 150, 200, this);
                 g.drawImage(back, 400, 600, 150, 200, this);
             }
 
 
+            //While there is a pile, display the most recently added card
             if (!backend.getPile().isEmpty()){
                 Card topP = backend.getPile().get(0);
                 topP.drawCard(g, 400, 300);
 
             }
 
+            // Labels who's deck is who's
             g.drawString(backend.getPlayer1().getName() + "'s Cards", 100, 200);
             g.drawString(backend.getPlayer2().getName() + "'s Cards", 100, 700);
         }
