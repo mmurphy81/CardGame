@@ -41,18 +41,7 @@ public class Game {
         this.deck = new Deck(ranks, suits, values, window);
 
         //Distributes the deck while the deck has cards within it to the players hand
-        /*while (!deck.isEmpty()) {
-            deck.shuffle();
-            Card player1Cards = deck.deal();
-            player1.addCard(player1Cards);
-
-            Card player2Cards = deck.deal();
-            player2.addCard(player2Cards);
-        }*/
-
-
-        // Simplified deck for a shorter game play
-        for (int i = 0; i<4; i++){
+        while (!deck.isEmpty()) {
             deck.shuffle();
             Card player1Cards = deck.deal();
             player1.addCard(player1Cards);
@@ -60,6 +49,17 @@ public class Game {
             Card player2Cards = deck.deal();
             player2.addCard(player2Cards);
         }
+
+
+        // Simplified deck for a shorter game play
+        /*for (int i = 0; i<4; i++){
+            deck.shuffle();
+            Card player1Cards = deck.deal();
+            player1.addCard(player1Cards);
+
+            Card player2Cards = deck.deal();
+            player2.addCard(player2Cards);
+        }*/
 
         window.repaint();
     }
