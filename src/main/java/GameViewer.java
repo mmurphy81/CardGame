@@ -24,7 +24,7 @@ public class GameViewer extends JFrame {
         g.fillRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
         // Initializes the color and font for the text
-        g.setColor(Color.red);
+        g.setColor(new Color(255,255,255));
         g.setFont(new Font("Serif", Font.PLAIN, 30));
 
 
@@ -56,8 +56,12 @@ public class GameViewer extends JFrame {
             }
             //Otherwise, display both of the decks while the game is still in play
             else {
+                g.setColor(Color.lightGray);
+                if (backend.counter % 2 == 1) g.drawRoundRect(90, 175,130,30,5,5);
+                else g.drawRoundRect(90, 676,130,30,5,5);
                 g.drawImage(back, 400, 50, 150, 200, this);
                 g.drawImage(back, 400, 600, 150, 200, this);
+
             }
 
 

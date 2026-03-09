@@ -8,6 +8,7 @@ public class Game {
     private Deck deck;
     private GameViewer window;
     private ArrayList<Card> pile;
+    public int counter = 1;
 
     public static final String INSTRUCTIONS = "Welcome to the beginning level of Egyptian rat slap!\n" + "Here are some rules: \n" +
             "The goal of the game is to end up with the most cards.\n" +
@@ -41,7 +42,18 @@ public class Game {
         this.deck = new Deck(ranks, suits, values, window);
 
         //Distributes the deck while the deck has cards within it to the players hand
-        while (!deck.isEmpty()) {
+//        while (!deck.isEmpty()) {
+//            deck.shuffle();
+//            Card player1Cards = deck.deal();
+//            player1.addCard(player1Cards);
+//
+//            Card player2Cards = deck.deal();
+//            player2.addCard(player2Cards);
+//        }
+
+
+        // Simplified deck for a shorter game play
+        for (int i = 0; i<4; i++){
             deck.shuffle();
             Card player1Cards = deck.deal();
             player1.addCard(player1Cards);
@@ -49,17 +61,6 @@ public class Game {
             Card player2Cards = deck.deal();
             player2.addCard(player2Cards);
         }
-
-
-        // Simplified deck for a shorter game play
-        /*for (int i = 0; i<4; i++){
-            deck.shuffle();
-            Card player1Cards = deck.deal();
-            player1.addCard(player1Cards);
-
-            Card player2Cards = deck.deal();
-            player2.addCard(player2Cards);
-        }*/
 
         window.repaint();
     }
@@ -93,6 +94,7 @@ public class Game {
                 System.out.println( player1.getName() + " placed: " + player1Card + " ");
                 pile.add(0, player1Card);
                 window.repaint();
+                counter++;
 
                 //Checks to make sure the card is a face card, and if it is, the pile resets and the
                 // Player gets the cards in the pile
@@ -112,6 +114,7 @@ public class Game {
                 System.out.println(player2.getName() +" placed: " + player2Card + " ");
                 pile.add(0,player2Card);
                 window.repaint();
+                counter++;
 
                 if (player2Card.faceCard()==true){
                     s.nextLine();
