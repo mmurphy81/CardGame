@@ -48,20 +48,28 @@ public class GameViewer extends JFrame {
 
 
             // If the players hand deck is 1 or empty, then that player loses and it displays the winners name
-            if ( hand1.size() == 1 || hand1.isEmpty()){
+            if (hand1.size() == 1 || hand1.isEmpty()) {
+                // winner screen
+                g.setColor(new Color(31,131,41));
+                g.fillRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT);
+                g.setColor(Color.WHITE);
                 g.drawString(backend.getPlayer2().getName() + " has won!", 700, 500);
             }
-            else if ( hand2.size() == 1 || hand2.isEmpty()){
-                g.drawString(backend.getPlayer1().getName() + " has won!",700, 500);
+
+            else if (hand2.size() == 1 || hand2.isEmpty()) {
+                g.setColor(new Color(31,131,41));
+                g.fillRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT);
+                g.setColor(Color.WHITE);
+                g.drawString(backend.getPlayer1().getName() + " has won!", 700, 500);
             }
-            //Otherwise, display both of the decks while the game is still in play
+
             else {
-                g.setColor(Color.lightGray);
-                if (backend.counter % 2 == 1) g.drawRoundRect(90, 175,130,30,5,5);
-                else g.drawRoundRect(90, 676,130,30,5,5);
+                // normal gameplay screen
+                g.drawString(backend.getPlayer1().getName() + "'s Cards", 100, 200);
+                g.drawString(backend.getPlayer2().getName() + "'s Cards", 100, 700);
+
                 g.drawImage(back, 400, 50, 150, 200, this);
                 g.drawImage(back, 400, 600, 150, 200, this);
-
             }
 
 
@@ -72,9 +80,6 @@ public class GameViewer extends JFrame {
 
             }
 
-            // Labels who's deck is who's
-            g.drawString(backend.getPlayer1().getName() + "'s Cards", 100, 200);
-            g.drawString(backend.getPlayer2().getName() + "'s Cards", 100, 700);
         }
         }
 }

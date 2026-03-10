@@ -8,7 +8,24 @@ public class Game {
     private Deck deck;
     private GameViewer window;
     private ArrayList<Card> pile;
-    public int counter = 1;
+    private int counter = 1;
+    private boolean hasWon = false;
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public boolean isHasWon() {
+        return hasWon;
+    }
+
+    public void setHasWon(boolean hasWon) {
+        this.hasWon = hasWon;
+    }
 
     public static final String INSTRUCTIONS = "Welcome to the beginning level of Egyptian rat slap!\n" + "Here are some rules: \n" +
             "The goal of the game is to end up with the most cards.\n" +
@@ -130,10 +147,12 @@ public class Game {
             //If one of the players has won, the game ends and whichever player won is crowned as so
             else if (hasWon().equals(player1)){
                 System.out.println(player1.getName() +" has won!");
+                setHasWon(true);
                 break;
             }
             else if (hasWon().equals(player2)){
                 System.out.println(player2.getName() +" has won!");
+                setHasWon(true);
                 break;
             }
 
