@@ -15,9 +15,6 @@ public class Game {
         return counter;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
 
     public boolean isHasWon() {
         return hasWon;
