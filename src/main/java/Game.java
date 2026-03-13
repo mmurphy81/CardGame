@@ -145,11 +145,13 @@ public class Game {
             else if (hasWon().equals(player1)){
                 System.out.println(player1.getName() +" has won!");
                 setHasWon(true);
+                window.setRestartButtonVisible(true); // <--- ADD THIS
                 break;
             }
             else if (hasWon().equals(player2)){
                 System.out.println(player2.getName() +" has won!");
                 setHasWon(true);
+                window.setRestartButtonVisible(true); // <--- ADD THIS
                 break;
             }
 
@@ -180,5 +182,33 @@ public class Game {
         printInstructions();
         Game game1 = new Game();
         game1.playGame();
+    }
+
+    // Resets the game state for a new round
+    public void resetGame() {
+        // 1. Reset turn counter and win status
+        this.counter = 1;
+        this.setHasWon(false);
+
+        // 2. Clear the pile and player hands
+        this.pile.clear();
+        this.player1.getHand().clear();
+        this.player2.getHand().clear();
+
+        // 3. Re-initialize the deck
+        String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
+        int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+        this.deck = new Deck(ranks, suits, values, window);
+
+        // 4. Redeal cards (using your current simplified 4-card logic)
+        for (int i = 0; i < 4; i++){
+            deck.shuffle();
+            player1.addCard(deck.deal());
+            player2.addCard(deck.deal());
+        }
+
+        window.setRestartButtonVisible(false); // <--- ADD THIS before repaint
+        window.repaint();
     }
 }
