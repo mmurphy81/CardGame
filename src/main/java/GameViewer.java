@@ -66,8 +66,8 @@ public class GameViewer extends JFrame {
             else {
                 // normal gameplay screen
                 g.setColor(Color.lightGray);
-                if (backend.getCounter() % 2 == 1) g.drawRoundRect(90, 175,130,30,5,5);
-                else g.drawRoundRect(90, 676,130,30,5,5);
+                if (backend.getCounter() % 2 == 1) g.drawRoundRect(90, 175,200,30,5,5);
+                else g.drawRoundRect(90, 676,200,30,5,5);
                 g.drawString(backend.getPlayer1().getName() + "'s Cards", 100, 200);
                 g.drawString(backend.getPlayer2().getName() + "'s Cards", 100, 700);
 
